@@ -1,18 +1,23 @@
-const express = require('express')
+const express = require('express');
+const cors = require('cors');
 const got = require('got');
 const app = express()
 const port = 8080
 
-//var corsOptions = {
-//    origin: 'https://hackappatoi.github.io/',
-//    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
-//}
+var corsOptions = {
+    origin: '*',
+    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+}
 
 var hackappatoi_id = 140428;
 
+
+
+app.use(cors());
+app.options('*', cors());
 app.get('/', (req, res) => {
     return res.status(200).send("Ciaone");
-})
+});
 
 app.get('/results', (req, res) => {
     var today = new Date();
@@ -47,7 +52,7 @@ app.get('/results', (req, res) => {
         console.log(error.response.body);
         return res.status(500).send('mmt');
     });
-})
+});
 
 app.get('/pastresults', (req, res) => {
     var today = new Date();
@@ -82,7 +87,7 @@ app.get('/pastresults', (req, res) => {
         console.log(error.response.body);
         return res.status(500).send('mmt');
     });
-})
+});
 
 
 app.get('/teamdata', (req, res) => {
@@ -97,10 +102,10 @@ app.get('/teamdata', (req, res) => {
     });
 
     
-})
+});
 
 
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
-})
+});
