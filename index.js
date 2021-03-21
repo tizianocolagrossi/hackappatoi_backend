@@ -1,6 +1,5 @@
 const express = require('express')
 const got = require('got');
-const cors = require('cors');
 const app = express()
 const port = 8080
 
@@ -11,11 +10,11 @@ const port = 8080
 
 var hackappatoi_id = 140428;
 
-app.get('/', cors(), (req, res) => {
+app.get('/', (req, res) => {
     return res.status(200).send("Ciaone");
 })
 
-app.get('/results', cors(), (req, res) => {
+app.get('/results', (req, res) => {
     var today = new Date();
     var year = today.getFullYear();
 
@@ -50,7 +49,7 @@ app.get('/results', cors(), (req, res) => {
     });
 })
 
-app.get('/pastresults', cors(), (req, res) => {
+app.get('/pastresults', (req, res) => {
     var today = new Date();
     var year = today.getFullYear();
 
@@ -86,7 +85,7 @@ app.get('/pastresults', cors(), (req, res) => {
 })
 
 
-app.get('/teamdata', cors(), (req, res) => {
+app.get('/teamdata', (req, res) => {
 
     got('https://ctftime.org/api/v1/teams/140428/').then(response => {
         
